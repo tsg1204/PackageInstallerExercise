@@ -8,5 +8,8 @@ describe("Package Installer", function() {
     expect(typeof packageInstaller).toBe('function');
   });
 
+  //invalid input array
+  var inputArray = ['KittenService: ', 'Leetmeme: Cyberportrat', 'Cyberportrat: Ice', 'CamelCaser: KittenService', 'Fraudstream: ', 'Ice: Leetmeme'];
+
   
 })

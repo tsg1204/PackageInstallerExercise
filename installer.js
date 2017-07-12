@@ -1,7 +1,8 @@
 //Package Installer Exercise
 
 //input array
-var inputArray = ['KittenService: ', 'Leetmeme: Cyberportrat', 'Cyberportrat: Ice', 'CamelCaser: KittenService', 'Fraudstream: ', 'Ice: Leetmeme'];
+var inputArray = ['KittenService: ', 'Leetmeme: Cyberportrat', 'Cyberportrat: Ice', 'CamelCaser: KittenService', 'Fraudstream: Leetmeme', 'Ice: '];
+
 //temp string to hold dependencies and packages
 var tempPackAndDep = [];
 
@@ -30,8 +31,6 @@ function packageInstaller (input) {
 
          };
     };
-
-    //console.log(output);
 
     for (var i=0; i < input.length; i++) {
 
