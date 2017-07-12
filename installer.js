@@ -15,16 +15,15 @@ var cycleError = false;
 //package installer to execute
 function packageInstaller (input) {
     
-    //loop through input array split the element to package and dependency if there is one
-    //add to output packages without dependency first, add dependency before package if there is a dependency
+    //loop through input array get packages without dependency
     for (var i=0; i < input.length; i++) {
 
-       var tempArray = input[i].trim().split(':');
-       var tempPackage = tempArray[0].trim();
-       var tempDependency = tempArray[1].trim();
+        var tempArray = input[i].trim().split(':');
+        var tempPackage = tempArray[0].trim();
+        var tempDependency = tempArray[1].trim();
 
-       //check if package has dependency if not add to the output
-       if(tempArray.length != 0) {
+        //check if package has dependency if not add to the output
+        if(tempArray.length != 0) {
             if(tempDependency === '') {
 
                 if(output.indexOf(tempPackage) === -1) {
@@ -32,21 +31,22 @@ function packageInstaller (input) {
                 }
             };
 
-         };
+        };
     };
-
+    //split input array, get only elements where package has dependency
     for (var i=0; i < input.length; i++) {
-        
         var tempArray = input[i].trim().split(':');
         var tempPackage = tempArray[0].trim();
         var tempDependency = tempArray[1].trim();
 
+        cycleError = false;
         //if package has dependency and it's not in the output, add to output
         if (tempDependency != '') {
             //if package already in the array and dependency not log an error 
             if(tempPackAndDep.indexOf(tempPackage) > -1 && tempPackAndDep.indexOf(tempDependency) != -1 ) {
                 console.log('Cycle error - package: ' + tempPackage + ', dependency: ' + tempDependency);
                 cycleError = true;
+                return;
             }
 
             if(tempPackAndDep.indexOf(tempDependency) === -1) {
@@ -57,7 +57,6 @@ function packageInstaller (input) {
                     tempPackAndDep.push(tempPackage);
             }
         };
-        cycleError = false;
     };
 
     if(cycleError) {
