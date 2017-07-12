@@ -1,6 +1,6 @@
 var assert = require("assert");
 var Installer = require("../installer");
-var sinon = require("sinon");
+//var sinon = require("sinon");
 
 describe("Package Installer", function() {
 
@@ -9,7 +9,7 @@ describe("Package Installer", function() {
   });
 
   //invalid input array
-  var inputArray = ['KittenService: ', 'Leetmeme: Cyberportrat', 'Cyberportrat: Ice', 'CamelCaser: KittenService', 'Fraudstream: ', 'Ice: Leetmeme'];
+  var invalidArray = ['KittenService: ', 'Leetmeme: Cyberportrat', 'Cyberportrat: Ice', 'CamelCaser: KittenService', 'Fraudstream: ', 'Ice: Leetmeme'];
 
   
 })
