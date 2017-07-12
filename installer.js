@@ -9,6 +9,9 @@ var tempPackAndDep = [];
 //output string 
 var output = [];
 
+//cycle error
+var cycleError = false;
+
 //package installer to execute
 function packageInstaller (input) {
     
@@ -33,7 +36,7 @@ function packageInstaller (input) {
     };
 
     for (var i=0; i < input.length; i++) {
-
+        
         var tempArray = input[i].trim().split(':');
         var tempPackage = tempArray[0].trim();
         var tempDependency = tempArray[1].trim();
@@ -43,6 +46,7 @@ function packageInstaller (input) {
             //if package already in the array and dependency not log an error 
             if(tempPackAndDep.indexOf(tempPackage) > -1 && tempPackAndDep.indexOf(tempDependency) != -1 ) {
                 console.log('Cycle error - package: ' + tempPackage + ', dependency: ' + tempDependency);
+                cycleError = true;
             }
 
             if(tempPackAndDep.indexOf(tempDependency) === -1) {
@@ -53,9 +57,10 @@ function packageInstaller (input) {
                     tempPackAndDep.push(tempPackage);
             }
         };
+        cycleError = false;
     };
 
-    if(tempPackAndDep.indexOf(tempPackage) > -1 && tempPackAndDep.indexOf(tempDependency) != -1 ) {
+    if(cycleError) {
         return;
     }
     else {
