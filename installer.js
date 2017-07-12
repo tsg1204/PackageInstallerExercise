@@ -36,7 +36,8 @@ packageInstaller = {
         //if package has dependency and it's not in the output, add to output
         if (tempDependency != '') {
             //if package already in the otput but it has a dependency which is not - cycle error 
-            if(tempPackAndDep.indexOf(tempPackage) > -1 && tempPackAndDep.indexOf(tempDependency) != -1 ) {
+            if((tempPackAndDep.indexOf(tempPackage) > -1 || output.indexOf(tempPackage) > -1 )
+                && tempPackAndDep.indexOf(tempDependency) != -1 ) {
                 throw new Error('Cycle error - package: ' + tempPackage + ', dependency: ' + tempDependency);
             }
 
